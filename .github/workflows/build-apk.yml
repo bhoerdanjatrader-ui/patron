@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: .
 
     steps:
       - name: Checkout repository
@@ -28,9 +25,11 @@ jobs:
           java-version: '17'
 
       - name: Install dependencies
+        working-directory: .
         run: yarn install --no-lockfile
 
       - name: Generate Native Android Project
+        working-directory: .
         run: npx expo prebuild --platform android --clean
 
       - name: Build APK (Release)
